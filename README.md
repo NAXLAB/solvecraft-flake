@@ -56,9 +56,6 @@ nix flake update solvecraft-src
 nix build
 ```
 
-To follow tagged releases instead of the default branch, pin the input in `flake.nix`:
-`url = "github:bherbruck/solvecraft/v0.1.1";`.
-
 The version is read from upstream's `Cargo.toml`, plus the commit date, and dependencies come
 from upstream's `Cargo.lock`, so a normal update needs no edits to `package.nix`. The exception
 is a new git dependency in `Cargo.lock`: the build will fail asking for an `outputHashes` entry.
@@ -74,11 +71,9 @@ is a new git dependency in `Cargo.lock`: the build will fail asking for an `outp
 
 ## Limitations
 
-- Tests are disabled: they need a GPU.
 - aarch64-linux is listed in the flake but untested.
 
 ## License
 
 The packaging files in this repository are licensed under the [MIT License](LICENSE).
-
 SolveCraft itself is dual-licensed under MIT or Apache-2.0 by its authors.
