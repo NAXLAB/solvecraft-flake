@@ -1,0 +1,17 @@
+# Nix build outputs
+result
+result-*
+
+# direnv
+.direnv/
+.envrc
+
+# cargo, if you run `cargo run` inside `nix develop` in a checkout of upstream
+target/
+
+# Editors and OS
+*.swp
+*~
+.DS_Store
+.vscode/
+.idea/
