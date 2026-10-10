@@ -25,11 +25,11 @@
     "solvecraft-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1791570107,
-        "narHash": "sha256-XAZQ3flPg8qqaxo5tSdFSQXkeJgNALr5nfBp3s6QRiQ=",
+        "lastModified": 1791657236,
+        "narHash": "sha256-B3CIZKRaKaOPaLkYeRLoyocb+D4XRdBoFjHbbu9ivFI=",
         "owner": "bherbruck",
         "repo": "solvecraft",
-        "rev": "50a74ac66d69ce3feab209a77036818bc29e4e44",
+        "rev": "81be4e74b873b0f429296f07cf97c996c19dc295",
         "type": "github"
       },
       "original": {
