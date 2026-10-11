@@ -15,7 +15,6 @@
   vulkan-loader,
   libGL,
   dbus,
-  # The upstream source tree, supplied by the flake (the `solvecraft-src` input).
   src,
 }:
 
@@ -74,15 +73,13 @@ rustPlatform.buildRustPackage (finalAttrs: {
   # Upstream ships no desktop file; this mirrors the one its AppImage script writes.
   desktopItems = [
     (makeDesktopItem {
-      name = "solvecraft";
+      name = "ai.storyteller.solvecraft";
       desktopName = "SolveCraft";
       comment = "Parametric 3D CAD";
       exec = "solvecraft %f";
-      icon = "solvecraft";
-      categories = [
-        "Graphics"
-        "Engineering"
-      ];
+      icon = "ai.storyteller.solvecraft";
+      startupWMClass = "ai.storyteller.solvecraft";
+      categories = [ "Graphics" "Engineering" ];
       mimeTypes = [ "model/step" ];
     })
   ];
@@ -99,18 +96,13 @@ rustPlatform.buildRustPackage (finalAttrs: {
     wrapProgram $out/bin/solvecraft \
       --run 'if [ -n "$WAYLAND_DISPLAY" ] && [ -z "$SOLVECRAFT_X11" ]; then export SOLVECRAFT_WAYLAND=1; fi'
 
-    # Upstream commits no icon: its AppImage script renders one with SolveCraft itself from the
-    # bracket example. Do the same, and carry on without an icon if the headless render fails
-    # in the sandbox.
-    export HOME=$TMPDIR
-
-    if $out/bin/solvecraft-cli snapshot ${src}/examples/bracket.json \
-         --out $TMPDIR/solvecraft.png --width 256 --height 256 >/dev/null 2>&1; then
-      install -Dm644 $TMPDIR/solvecraft.png \
-        $out/share/icons/hicolor/256x256/apps/solvecraft.png
-    else
-      echo "warning: could not render an icon; installing without one" >&2
-    fi
+    # Render the app icon with the CLI (it draws the logo in code), in the sizes the hicolor theme
+    # looks for. The icon is named after the app id so Wayland compositors match it to the window.
+    for s in 16 24 32 48 64 128 256 512; do
+      dir=$out/share/icons/hicolor/$s"x"$s/apps
+      mkdir -p $dir
+      $out/bin/solvecraft-cli icon --size $s --out $dir/ai.storyteller.solvecraft.png >/dev/null
+    done
   '';
 
   meta = {

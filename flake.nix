@@ -6,7 +6,6 @@
 
     # Upstream source. `flake = false` because the repo has no flake.nix of its own.
     # Pinned in flake.lock; `nix flake update solvecraft-src` moves it to the latest commit.
-    # To track a release instead: url = "github:bherbruck/solvecraft/v0.1.1";
     solvecraft-src = {
       url = "github:NAXLAB/solvecraft";
       flake = false;
