@@ -8,7 +8,7 @@
     # Pinned in flake.lock; `nix flake update solvecraft-src` moves it to the latest commit.
     # To track a release instead: url = "github:bherbruck/solvecraft/v0.1.1";
     solvecraft-src = {
-      url = "github:bherbruck/solvecraft";
+      url = "github:NAXLAB/solvecraft";
       flake = false;
     };
   };

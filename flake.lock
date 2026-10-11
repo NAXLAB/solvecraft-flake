@@ -25,15 +25,15 @@
     "solvecraft-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1791688262,
-        "narHash": "sha256-NiSl8xZr85UXWIQzVsTfYKabEIw2mmCmAR8/d9SWP30=",
-        "owner": "bherbruck",
+        "lastModified": 1791748209,
+        "narHash": "sha256-K+7JZI/5o779PZKgTqPEfpfqKlfW6PlJbwXeoeRem7w=",
+        "owner": "NAXLAB",
         "repo": "solvecraft",
-        "rev": "22672585c9dff977de24887d37e1b43c3ba4ea54",
+        "rev": "344e52e207788c94589bd81318c516f6641bb0a1",
         "type": "github"
       },
       "original": {
-        "owner": "bherbruck",
+        "owner": "NAXLAB",
         "repo": "solvecraft",
         "type": "github"
       }
