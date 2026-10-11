@@ -4,6 +4,7 @@
   rustPlatform,
   pkg-config,
   copyDesktopItems,
+  makeWrapper,
   makeDesktopItem,
   libxkbcommon,
   wayland,
@@ -49,6 +50,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   nativeBuildInputs = [
     pkg-config
     copyDesktopItems
+    makeWrapper
   ];
 
   # winit, wgpu and rfd load these with dlopen at runtime, so they are not ELF NEEDED entries;
@@ -86,17 +88,22 @@ rustPlatform.buildRustPackage (finalAttrs: {
   ];
 
   postFixup = lib.optionalString stdenv.hostPlatform.isLinux ''
-
     for b in solvecraft solvecraft-cli; do
       patchelf --add-rpath ${lib.makeLibraryPath finalAttrs.buildInputs} $out/bin/$b
     done
 
+    # Upstream forces X11 whenever DISPLAY is set, and compositors using xwayland-satellite
+    # (niri) always set it, which breaks the app-drawn title bar (maximize/restore/resize).
+    # In a Wayland session, use native Wayland instead. Set SOLVECRAFT_X11=1 to keep upstream's
+    # behaviour. Pure X11 sessions have no WAYLAND_DISPLAY and are unaffected.
+    wrapProgram $out/bin/solvecraft \
+      --run 'if [ -n "$WAYLAND_DISPLAY" ] && [ -z "$SOLVECRAFT_X11" ]; then export SOLVECRAFT_WAYLAND=1; fi'
+
     # Upstream commits no icon: its AppImage script renders one with SolveCraft itself from the
     # bracket example. Do the same, and carry on without an icon if the headless render fails
     # in the sandbox.
-
     export HOME=$TMPDIR
-    
+
     if $out/bin/solvecraft-cli snapshot ${src}/examples/bracket.json \
          --out $TMPDIR/solvecraft.png --width 256 --height 256 >/dev/null 2>&1; then
       install -Dm644 $TMPDIR/solvecraft.png \
