@@ -2,11 +2,11 @@
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1791456040,
-        "narHash": "sha256-H83yz/do+hjOO0uujHyH8RgtIQP2v7Mw+cLwcZK/xKc=",
+        "lastModified": 1791594108,
+        "narHash": "sha256-XK4KceonkwD8LuMAt/vNrz982mXJM5jeHAxMwsUXXAQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e7439b6b14ad3cc35d05608ebca9bce01a25f5f8",
+        "rev": "6510408d147d8c5e6d76043e899e9251756f6a75",
         "type": "github"
       },
       "original": {
@@ -25,11 +25,11 @@
     "solvecraft-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1791657236,
-        "narHash": "sha256-B3CIZKRaKaOPaLkYeRLoyocb+D4XRdBoFjHbbu9ivFI=",
+        "lastModified": 1791682279,
+        "narHash": "sha256-FLSCu4IQmBQJLSK637O2VWqY2/5fy7STnOYrlsql/5c=",
         "owner": "bherbruck",
         "repo": "solvecraft",
-        "rev": "81be4e74b873b0f429296f07cf97c996c19dc295",
+        "rev": "c1b6478ab5bdb3061425a3066256c792ac6e940b",
         "type": "github"
       },
       "original": {
